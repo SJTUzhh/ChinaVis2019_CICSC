@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title> Project </title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<div id='headline'>
+		<h3 align='center'>CICSC大会安全可视化系统</h3>
+		<select id='day_selection'>
+			<option value=0>Day1</option>
+		    <option value=1>Day2</option>
+		    <option value=2>Day3</option>
+		</select>
+	</div>
+	<div id='main_box'>
+		<div id='box_left'>
+			<div id='barChart'></div>
+			<div id='lineGraph'></div>
+		</div>
+		
+		<div id='box_middle'>
+			<div id="mainMap"></div>
+			<div id="mainMapButton">
+				<button id="Play" >Play</button>  
+				<button id="Stop">Stop</button> 				
+				<select id="select"></select> &nbsp; 
+				<select id="floor_select"></select> &nbsp;			   
+				<input type="range" id="slider" value="25230" min="25230" max="64830" step="30"> 
+				
+			</div>
+				
+			<div id="heatmap3D"></div>
+		</div>
+		
+		<div id='box_right'>
+			<div id="pie"></div>
+			<div id="tooltip"></div>
+			<div id="list"></div>
+			<div id="listSearch">
+				<input type="button" value="lastpage" id="lastpage">
+				<input type="button" value="nextpage" id="nextpage">
+				<input type="text" id="page">
+				<div id="pagenum"></div>
+				<input type="button" value="turnto" id="turn">
+				<input type="text" id="id_search">
+				<input type="button" value="search" id="search">
+			</div>
+		</div>
+		
+		<div id="MOVE_PATH">
+			<button id="CLOSE_WINDOW" onclick="CloseTheWindow()">关闭</button>
+			<div id="MOVE_PATH_2d"></div>
+			<div id="MOVE_PATH_3d"></div>
+			<div id="MOVE_PATH_ID">初始值</div>
+		</div>
+		<div id="black_overlay"></div>
+	</div>
+	<div id='bottomline'></div>
+</body>
+
+<script src="js/d3.v4.min.js"></script>
+<script src="js/d3-scale-chromatic.v1.min.js"></script>
+<script src="js/echarts.js"></script>
+<script src="js/echarts-gl.js"></script>
+<script src="js/barChart.js"></script>
+<script src="js/lineGraph.js"></script>
+<script src="js/mainMap.js"></script>
+<script src="js/pie.js"></script>
+<script src="js/heatmap3D.js"></script>
+<script src="js/path.js"></script>
+<script>
+	var dayX_mainMaps = ['data/day1_mainMap.csv', 'data/day2_mainMap.csv', 'data/day3_mainMap.csv'];
+	var dayX_areaDatas = ['data/day1_areaData.csv', 'data/day2_areaData.csv', 'data/day3_areaData.csv'];
+	var dayX_results = ['data/day1_result.csv', 'data/day2_result.csv', 'data/day3_result.csv'];
+	var dayXs = ['data/day1.csv', 'data/day2.csv', 'data/day3.csv'];
+	
+	d3.select("#day_selection").on("change", function () {
+            var curDay = document.getElementById('day_selection').value;
+			
+			document.getElementById('barChart').innerHTML ='';
+			document.getElementById('lineGraph').innerHTML ='';
+			document.getElementById('mainMap').innerHTML ='';
+			
+			document.getElementById('pie').innerHTML ='';
+			document.getElementById('list').innerHTML ='';
+
+			document.getElementById('floor_select').innerHTML ='';
+			document.getElementById('slider').innerHTML ='';
+			document.getElementById('select').innerHTML ='';
+
+			document.getElementById('MOVE_PATH_2d').innerHTML ='';
+			
+			barCharts(curDay);
+			mainMap(curDay);
+			lineGraph(curDay);
+			heatmap3D(curDay);
+			pie(curDay);
+			drawMAP(curDay);
+			drawMAP2(curDay, "refresh");
+        });
+
+	window.onload=function(){
+		barCharts(document.getElementById('day_selection').value);
+		mainMap(document.getElementById('day_selection').value);
+		lineGraph(document.getElementById('day_selection').value);
+		heatmap3D(document.getElementById('day_selection').value);
+		pie(document.getElementById('day_selection').value);
+		drawMAP(document.getElementById('day_selection').value);
+		drawMAP2(document.getElementById('day_selection').value, "new");
+	}
+</script>
