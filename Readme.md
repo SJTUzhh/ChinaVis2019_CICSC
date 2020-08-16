@@ -2,7 +2,7 @@
 
 ## **简介**  
     
-由四人合作完成。赛题为2019年中国数据可视分析挑战赛的挑战1—— [ChinaVis2019 Challenge1](http://www.chinavis.org/2019/challenge.html) 。根据大赛提供的数据，利用 Python 的 Numpy 和  Pandas 数据分析库完成数据的处理，借助 `D3` 和 `ECharts` 两种可视分析框架，使用 Javascript 语言开发前端页面，以多种视图分析数据，展示数据分析结果。数据的取用和计算均由前端完成。本项目能在一定程度上帮助会场管理人员发现异常事件、优化会场资源配置。
+赛题为2019年中国数据可视分析挑战赛的挑战1—— [ChinaVis2019 Challenge1](http://www.chinavis.org/2019/challenge.html) 。根据大赛提供的数据，利用 Python 的 Numpy 和  Pandas 数据分析库完成数据的处理，借助 `D3` 和 `ECharts` 两种可视分析框架，使用 Javascript 语言开发前端页面，以多种视图分析数据，展示数据分析结果。数据的取用和计算均由前端完成。本项目能在一定程度上帮助会场管理人员发现异常事件、优化会场资源配置。
 
 ## **本地运行方式**
 
